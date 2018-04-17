@@ -5,30 +5,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Query } from 'react-apollo'
-import gql from 'graphql-tag'
 
 import Settings from '../settings'
 import Page from '../layout/page.js'
 import Article from '../layout/article.js'
 
-const query = gql`
-  {
-    allUsers {
-      edges {
-        node {
-          id,
-          username,
-          email,
-          firstName,
-          lastName,
-          staff {
-            title
-          }
-        }
-      }
-    }
-  }
-`
+import { getUsers } from './queries'
 
 /**
  * `UserSummary` provides the layout for a user
@@ -56,7 +38,7 @@ const UserSummary = ({ user }) => {
         </dl>
         <dl className={ style.dl }>
           <dt className={ style.dt }>role:</dt>
-          <dd className={ style.dd }>{ user.staff.title }</dd>
+          <dd className={ style.dd }>{ user.staff ? user.staff.title : null }</dd>
         </dl>
       </div>
     </Link>
@@ -70,7 +52,7 @@ export default () => (
   <Page title="Users"
         lead="List of users of the site">
     <Article>
-      <Query query={ query }>
+      <Query query={ getUsers }>
         {({ loading, error, data }) => {
           if (loading) return <div>loading...</div>
           if (error) return <div>Error! { error.message }</div>

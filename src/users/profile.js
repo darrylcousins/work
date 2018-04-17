@@ -3,31 +3,13 @@
  * @author Darryl Cousins <darryljcousins@gmail.com>
  */
 import React from 'react'
-import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 
 import Settings from '../settings'
-import Page from '../layout/page.js'
-import Article from '../layout/article.js'
-
-const Q = gql`
-  query user($username: String!) {
-    allUsers(username: $username) {
-      edges {
-        node {
-          id,
-          username,
-          email,
-          firstName,
-          lastName,
-          staff {
-            title
-          }
-        }
-      }
-    }
-  }
-`
+import Page from '../layout/page'
+import Article from '../layout/article'
+import { getUserByUsername } from './queries'
+import { getLocalUser } from '../auth/queries'
 
 class Profile extends React.Component {
 
@@ -38,7 +20,21 @@ class Profile extends React.Component {
       <Page title="User profile"
             lead="">
         <Article>
-          <Query query={ Q } variables={{ username }}>
+          <Query query={ getLocalUser }>
+            {({ client, loading, data: { user } }) => {
+              let style = Settings.style
+              if (loading) {
+                return <span className={ style.navLink }>Loading...</span>
+              }
+              if (user && user.username !== 'anonymous') {
+                return (
+                  <div>Welcome { user.username }</div>
+                )
+              }
+              return null
+            }}
+          </Query>
+          <Query query={ getUserByUsername } variables={{ username }}>
             {({ loading, error, data }) => {
               if (loading) return <div>loading...</div>
               if (error) return <div>Error! { error.message }</div>
@@ -47,7 +43,7 @@ class Profile extends React.Component {
               let user = data.allUsers.edges[0].node
               return (
                 <div>
-                  <h2>User profile for: {user.firstName}</h2>
+                  <h2>User profile for: { user.username }</h2>
                   <dl className={ style.dl }>
                     <dt className={ style.dt }>email:</dt>
                     <dd className={ style.dd }>{ user.email }</dd>
@@ -62,7 +58,7 @@ class Profile extends React.Component {
                   </dl>
                   <dl className={ style.dl }>
                     <dt className={ style.dt }>role:</dt>
-                    <dd className={ style.dd }>{ user.staff.title }</dd>
+                    <dd className={ style.dd }>{ user.staff ? user.staff.title : null }</dd>
                   </dl>
                 </div>
               )

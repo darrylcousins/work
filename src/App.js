@@ -4,16 +4,22 @@
  */
 import React from 'react'
 import { ApolloProvider } from 'react-apollo'
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+  Switch
+} from 'react-router-dom'
 
 import Client from './client'
 import Settings from './settings'
 import ProfileForNav from './auth/profile-for-nav'
 
-import Home from './components'
-import Login from './auth/login'
+import Home from './pages/index'
+import Login from './pages/login'
 import Users from './users'
 import Profile from './users/profile'
+import SignUp from './pages/signup'
 
 import './tachyons.min.css'
 
@@ -52,12 +58,15 @@ export default () =>
           </header>
           <div className="ph3 ph5-ns">
             <div className="cf mw9 tc-m">
-              <div className="pb3 pb4-ns pt3 pt4-ns mt0 black-70 fl-l w-50-l">
+              <div className="pb3 pb4-ns pt3 pt4-ns mt0 black-70">
                 <div className="ph3 pv1 background-gray tl">
                   <Route exact path="/" component={ Home } />
                   <Route exact path="/login" component={ Login } />
                   <Route exact path="/users" component={ Users } />
-                  <Route exact path="/users/:username" component={ Profile } />
+                  <Route exact path="/signup" component={ SignUp } />
+                  <Switch>
+                    <Route path="/users/:username" component={ Profile } />
+                  </Switch>
                 </div>
               </div>
             </div>

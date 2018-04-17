@@ -11,6 +11,6 @@ import Settings from '../settings'
  * @param {component} children - content
  */
 export default ({ children }) =>
-  <article className={  Settings.style.article }>
+  <article className={ Settings.style.article }>
     { children }
   </article>

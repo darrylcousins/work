@@ -30,7 +30,7 @@ const Settings = {
     "inputWrapper": "measure-narrow",
 
     // form element
-    "form": "pa4 black-80 tl",
+    "form": "pa0 black-80 tl",
 
     // form input messages
     "message": "f6 lh-copy db mb2",

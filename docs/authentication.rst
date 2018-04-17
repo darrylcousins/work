@@ -50,4 +50,8 @@ Logout is provided by ``profile-for-nav.js`` with the method::
     Client.resetStore()
   }
 
+To do:
+------
+
+  * add ``refresh-token`` and ``verify-token``
 .. _apollo-client: https://www.apollographql.com/docs/react/
