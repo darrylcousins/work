@@ -36,8 +36,14 @@ Install `react`/`apollo`/`graphql` stack::
 
   (work) $ npm install --save redux react-redux
 
-Other helpers, helmet for html head inserts::
+Other helpers, transitions with `react-transition-group`::
 
-  (work) $ npm install --save react-helmet
+  (work) $ npm install react-transition-group
+
+... `font-awesome`::
+
+  (work) $ npm install --save @fortawesome/fontawesome
+  (work) $ npm install --save @fortawesome/react-fontawesome
+  (work) $ npm install --save @fortawesome/fontawesome-free-solid
 
 

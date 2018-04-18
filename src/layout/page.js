@@ -3,8 +3,8 @@
  * @author Darryl Cousins <darryljcousins@gmail.com>
  */
 import React from 'react'
+import { CSSTransition } from 'react-transition-group'
 
-import Client from '../client'
 import Title from '../layout/title'
 import Lead from '../layout/lead'
 
@@ -14,9 +14,34 @@ import Lead from '../layout/lead'
  * @param {component} lead - lead paragraph/subtitle
  * @param {component} children - content
  */
-export default ({ title, lead, children, ...props }) =>
-  <div>
-    <Title title={ title }/>
-    <Lead>{ lead }</Lead>
-    { children }
-  </div>
+class Page extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = { in: false }
+  }
+
+  componentDidMount() {
+    this.setState({ in: true })
+  }
+
+  render() {
+    var { title, lead, children } = this.props
+    return (
+      <CSSTransition
+        in={ this.state.in }
+        timeout={300}
+        classNames="fade"
+        unmountOnExit
+        >
+        <div>
+          <Title title={ title }/>
+          <Lead>{ lead }</Lead>
+          { children }
+        </div>
+      </CSSTransition>
+    )
+  }
+}
+
+export default Page

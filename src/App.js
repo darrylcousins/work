@@ -22,6 +22,7 @@ import Profile from './users/profile'
 import SignUp from './pages/signup'
 
 import './tachyons.min.css'
+import './work.css'
 
 export default () =>
   <ApolloProvider client={ Client }>
@@ -41,6 +42,9 @@ export default () =>
                 </div>
                 <nav className="db dtc-ns v-mid w-100 tl tr-ns mt2 mt0-ns">
                   <ProfileForNav/>
+                  <Link to="/signup" className={ Settings.style.navLink } title="Signup">
+                    Signup
+                  </Link>
                   <Link title="School on GitHub"
                     to="https://github.com/darrylcousins/work"
                     className={ Settings.style.navLink }>
