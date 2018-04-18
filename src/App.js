@@ -42,9 +42,6 @@ export default () =>
                 </div>
                 <nav className="db dtc-ns v-mid w-100 tl tr-ns mt2 mt0-ns">
                   <ProfileForNav/>
-                  <Link to="/signup" className={ Settings.style.navLink } title="Signup">
-                    Signup
-                  </Link>
                   <Link title="School on GitHub"
                     to="https://github.com/darrylcousins/work"
                     className={ Settings.style.navLink }>

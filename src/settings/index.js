@@ -22,7 +22,14 @@ const Settings = {
     "homeLink": "f5 f4-ns fw6 mt0 mb1 link black-70 dib",
 
     // a navbar link element
-    "navLink": "link dim f6 fw6 hover-blue link black-70 mr2 mr3-m mr4-l dib pointer",
+    "navLink": "link dim f6 fw6 link navy mr2 mr3-m mr4-l dib pointer",
+
+    // a page link
+    "listLink": "f6 fw3 db navy link dim mb2",
+
+    //*** columns ***//
+    "colLeft": "fl w-100 w-75-ns",
+    "colRight": "fl w-100 w-25-ns",
 
     //*** forms ***//
 
@@ -62,7 +69,7 @@ const Settings = {
     //*** lists ***//
 
     // definition list
-    "dlWrapper": "dim mb4",
+    "dlWrapper": "dim mb4 pr4",
     "dl": "f6 lh-title mv2 bb b--black-10",
     "dt": "b dark-gray dib",
     "dd": "ml2 gray dib",

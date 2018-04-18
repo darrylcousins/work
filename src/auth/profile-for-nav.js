@@ -6,8 +6,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Query } from 'react-apollo'
 import { CSSTransition } from 'react-transition-group'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import faCoffee from '@fortawesome/fontawesome-free-solid/faCoffee'
 
 import Settings from '../settings'
 import Client from '../client'
@@ -47,7 +45,6 @@ class ProfileForNav extends React.Component {
                 >
                 <Link to="/login" title="Login"
                   className={ style.navLink }>
-                  <FontAwesomeIcon icon={ faCoffee } className="dark-green pr4"/>
                   Login
                 </Link>
               </CSSTransition>
