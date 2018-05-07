@@ -7,6 +7,11 @@ import { Link } from 'react-router-dom'
 import { Query } from 'react-apollo'
 import { CSSTransition } from 'react-transition-group'
 
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import faSignInAlt from '@fortawesome/fontawesome-free-solid/faSignInAlt'
+import faSignOutAlt from '@fortawesome/fontawesome-free-solid/faSignOutAlt'
+import faUser from '@fortawesome/fontawesome-free-solid/faUser'
+
 import Settings from '../settings'
 import Client from '../client'
 import { getLocalUser } from './queries'
@@ -45,7 +50,8 @@ class ProfileForNav extends React.Component {
                 >
                 <Link to="/login" title="Login"
                   className={ style.navLink }>
-                  Login
+                  <FontAwesomeIcon icon={ faSignInAlt } color="navy" />
+                  &nbsp;Login
                 </Link>
               </CSSTransition>
             )
@@ -60,14 +66,16 @@ class ProfileForNav extends React.Component {
                 <span>
                   <Link to={ `/users/${ user.username }`} title="Profile"
                     className={ style.navLink }>
-                    { user.username }
+                    <FontAwesomeIcon icon={ faUser } color="navy" />
+                    &nbsp;{ user.username }
                   </Link>
                   <a className={ style.navLink }
                     onClick={() => {
                       this.logout()
                     }}
                   >
-                    Log out
+                    <FontAwesomeIcon icon={ faSignOutAlt } color="navy" />
+                    &nbsp;Log out
                   </a>
                 </span>
               </CSSTransition>

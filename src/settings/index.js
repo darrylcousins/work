@@ -9,18 +9,6 @@ const Settings = {
   // all class names are tachyons unless otherwise noted
   "style" : {
 
-    // h1 page title
-    "title": "f4 fw6 f1-ns lh-title measure mt0 mb1",
-
-    // lead text beneath title
-    "lead": "f5 f4-ns fw4 b measure dib-m lh-copy",
-
-    // html article element
-    "article": "tl",
-
-    // the home link element in navbar
-    "homeLink": "f5 f4-ns fw6 mt0 mb1 link black-70 dib",
-
     // a navbar link element
     "navLink": "link dim f6 fw6 link navy mr2 mr3-m mr4-l dib pointer",
 
@@ -28,8 +16,8 @@ const Settings = {
     "listLink": "f6 fw3 db navy link dim mb2",
 
     //*** columns ***//
-    "colLeft": "fl w-100 w-75-ns",
-    "colRight": "fl w-100 w-25-ns",
+    "colLeft": "fl w-100 w-70-ns",
+    "colRight": "fl w-100 w-30-ns",
 
     //*** forms ***//
 
@@ -69,8 +57,8 @@ const Settings = {
     //*** lists ***//
 
     // definition list
-    "dlWrapper": "dim mb4 pr4",
-    "dl": "f6 lh-title mv2 bb b--black-10",
+    "dlWrapper": "dim mb4",
+    "dl": "f6 lh-title mv2 bb b--black-10 mr2 nowrap",
     "dt": "b dark-gray dib",
     "dd": "ml2 gray dib",
   }

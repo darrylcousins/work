@@ -4,13 +4,11 @@
  */
 import React from 'react'
 
-import Settings from '../settings'
-
 /**
  * `Lead` provides the layout for a lead paragraph/subtitle
  * @param {component} children - content
  */
 export default ({ children }) =>
-  <p className={ Settings.style.lead }>
+  <p className="f5 f4-ns fw4 b measure dib-m lh-copy">
     { children }
   </p>

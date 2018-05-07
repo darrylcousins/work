@@ -4,13 +4,11 @@
  */
 import React from 'react'
 
-import Settings from '../settings'
-
 /**
  * `Article` provides the layout for an block of content
  * @param {component} children - content
  */
 export default ({ children }) =>
-  <article className={ Settings.style.article }>
+  <article className="tl">
     { children }
   </article>

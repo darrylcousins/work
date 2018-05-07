@@ -3,21 +3,50 @@
  * @author Darryl Cousins <darryljcousins@gmail.com>
  */
 import React from 'react'
+import { CSSTransition } from 'react-transition-group'
 
 import Settings from '../settings'
 
-export default (props) => {
+export default class Message extends React.Component {
 
-  const { name, type, messages } = props
+  constructor(props) {
+    super(props)
+    this.state = { in: false }
+  }
 
-  if (!(name in messages)) return null
+  componentDidMount() {
+    this.setState({ in: true })
+  }
 
-  const color = type === "error" && "red"
-  const text = messages[name]
+  render() {
+    const { name, type, messages } = this.props
 
-  return (
-    <div className={ Settings.style.message }>
-      <span className={ color }>{ text }</span>
-    </div>
-  )
+    if (messages === undefined || !(name in messages)) return null
+
+    var color
+    switch (type) {
+      case "error":
+        color = "red"
+        break
+      case "success":
+        color = "green"
+        break
+      default:
+        color = "red"
+    }
+    const text = messages[name]
+
+    return (
+      <CSSTransition
+        in={ this.state.in }
+        timeout={300}
+        classNames="fade"
+        unmountOnExit
+        >
+        <div className={ Settings.style.message }>
+          <span className={ color }>{ text }</span>
+        </div>
+      </CSSTransition>
+    )
+  }
 }

@@ -45,5 +45,7 @@ Other helpers, transitions with `react-transition-group`::
   (work) $ npm install --save @fortawesome/fontawesome
   (work) $ npm install --save @fortawesome/react-fontawesome
   (work) $ npm install --save @fortawesome/fontawesome-free-solid
+  (work) $ npm install --save @fortawesome/fontawesome-free-regular
+  (work) $ npm install --save @fortawesome/fontawesome-free-brands
 
 

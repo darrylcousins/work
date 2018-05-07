@@ -4,13 +4,11 @@
  */
 import React from 'react'
 
-import Settings from '../settings'
-
 /**
  * `Title` provides the layout for a page title
  * @param {string} title - the title
  */
 export default ({ title }) =>
-    <h1 className={ Settings.style.title }>
-      { title }
-    </h1>
+  <h1 className="f4 fw6 f1-ns lh-title measure mt0 mb1">
+    { title }
+  </h1>

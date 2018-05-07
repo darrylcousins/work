@@ -10,7 +10,7 @@ import InputWrapper from './input_wrapper'
 
 export default (props) => {
 
-  const { formApi, name, title, help_text, validate } = props
+  const { formApi, name, title, help_text, validate, asyncValidate } = props
 
   let style = Settings.style
   let inputStyle = style.inputDefault
@@ -25,7 +25,6 @@ export default (props) => {
       name={ name }
       title={ title }
       help_text={ help_text }
-      validate={ validate }
     >
       <Text
         field={ name }
@@ -33,6 +32,7 @@ export default (props) => {
         id={ name }
         label={ name }
         validate={ validate }
+        asyncValidate={ asyncValidate }
         autoComplete={ name }
         aria-describedby={ name + "-help-text" }
         className={ inputStyle }
