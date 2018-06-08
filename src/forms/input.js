@@ -16,6 +16,7 @@ export default (props) => {
   let inputStyle = style.inputDefault
 
   if (formApi.errors && name in formApi.errors) inputStyle = style.inputError
+  if (formApi.asyncErrors && name in formApi.asyncErrors) inputStyle = style.inputError
   if (formApi.warnings && name in formApi.warnings) inputStyle = style.inputWarning
   if (formApi.success && name in formApi.success) inputStyle = style.inputSuccess
 

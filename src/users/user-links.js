@@ -37,7 +37,7 @@ export default class UserLinks extends React.Component {
           if (error) return <div>Error! { error.message }</div>
 
           return (
-            <ul className="fa-ul">
+            <ul className="fa-ul pl3-ns">
               { data.allUsers.edges.map(user => (
                 <UserSummary key={ user.node.id }
                              user={ user.node } />

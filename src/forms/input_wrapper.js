@@ -19,11 +19,11 @@ export default class InputWrapper extends React.Component {
           htmlFor={ name }
           className={ Settings.style.label }
         >{ title }</label>
+        { children }
         <div>{ formApi.errors && <Message name={ name } type="error" messages={ formApi.errors }/> }</div>
         <div>{ formApi.asyncErrors && <Message name={ name } type="error" messages={ formApi.asyncErrors }/> }</div>
         <div>{ formApi.warnings && <Message name={ name } type="warning" messages={ formApi.warning }/> }</div>
         <div>{ formApi.successes && <Message name={ name } type="success" messages={ formApi.success }/> }</div>
-        { children }
         <small
           id={ name + "-help-text" }
           className={ Settings.style.inputHelpText }

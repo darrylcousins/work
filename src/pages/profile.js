@@ -1,5 +1,5 @@
 /**
- * @file Provides a `login` page
+ * @file Provides a `profile` page
  * @author Darryl Cousins <darryljcousins@gmail.com>
  */
 import React from 'react'
@@ -8,7 +8,6 @@ import Page from '../layout/page'
 import Article from '../layout/article'
 import Settings from '../settings'
 import Profile from '../users/profile'
-import ProfileLead from '../users/profile-lead'
 import UserLinks from '../users/user-links'
 
 export default class ProfilePage extends React.Component {
@@ -19,7 +18,6 @@ export default class ProfilePage extends React.Component {
       <Page title="User profile"
             lead="">
         <Article>
-          <ProfileLead/>
           <div className={ Settings.style.colLeft }>
             <Profile username={ username } />
           </div>

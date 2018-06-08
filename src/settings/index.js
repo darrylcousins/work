@@ -15,8 +15,11 @@ const Settings = {
     // a page link
     "listLink": "f6 fw3 db navy link dim mb2",
 
+    // an inline link
+    "inlineLink": "navy link dim mb2 bb",
+
     //*** columns ***//
-    "colLeft": "fl w-100 w-70-ns",
+    "colLeft": "fl w-100 w-70-ns pr4-ns",
     "colRight": "fl w-100 w-30-ns",
 
     //*** forms ***//
@@ -58,9 +61,9 @@ const Settings = {
 
     // definition list
     "dlWrapper": "dim mb4",
-    "dl": "f6 lh-title mv2 bb b--black-10 mr2 nowrap",
-    "dt": "b dark-gray dib",
-    "dd": "ml2 gray dib",
+    "dl": "f6 lh-title mv2 bb b--black-10 mr8 nowrap",
+    "dt": "w-20 b dark-gray dib",
+    "dd": "w-80 ml2 gray dib",
   }
 
 }

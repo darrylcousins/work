@@ -24,6 +24,7 @@ import LoginPage from './pages/login'
 import UserPage from './pages/users'
 import ProfilePage from './pages/profile'
 import SignUpPage from './pages/signup'
+import UpdateProfilePage from './pages/update-profile'
 
 import './tachyons.min.css'
 import './work.css'
@@ -72,6 +73,7 @@ export default () =>
                   <Route exact path="/users" component={ UserPage } />
                   <Route exact path="/signup" component={ SignUpPage } />
                   <Switch>
+                    <Route path="/users/:username/update-profile" component={ UpdateProfilePage } />
                     <Route path="/users/:username" component={ ProfilePage } />
                   </Switch>
                 </div>
