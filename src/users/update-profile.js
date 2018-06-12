@@ -5,7 +5,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { Query } from 'react-apollo'
-import { Form, Text } from 'react-form'
+import { Form } from 'react-form'
 import gql from 'graphql-tag'
 
 import Client from '../client'
@@ -21,11 +21,36 @@ export default class UpdateProfile extends React.Component {
     this.onSubmit = this.onSubmit.bind(this)
   }
 
-  validate_proper_noun(noun) {
-    if (noun.match(/^[-\w.@]{1,30}$/) === null) {
-      return 'Username does not validate'
+  validate_proper_noun(value) {
+
+    var spaces = /\s+/
+    var propernoun = /^[A-Z]{1}[a-z]*$/
+    if (value.match(propernoun) !== null) {
+      return null
     }
-    return null
+    var corrected = ''
+
+    var words = value.split(spaces)
+    if (words.length > 1) {
+      words.forEach(function(el, idx) {
+        if (idx === 0){
+          corrected += el.charAt(0).toUpperCase() + el.substr(1).toLowerCase()
+        } else {
+          corrected += el.substr(0).toLowerCase()
+        }
+      })
+    } else {
+      if (value.match(propernoun) !== null) {
+        return null
+      } else {
+        corrected = value.charAt(0).toUpperCase() + value.substr(1).toLowerCase()
+      }
+    }
+    if (corrected === ''){
+      return 'Wierd?'
+    } else {
+      return `Just one proper noun please, did you mean ${corrected}?`
+    }
   }
 
   onSubmit(data, e, formApi) {
@@ -113,27 +138,30 @@ export default class UpdateProfile extends React.Component {
                     <div>{ formApi.errors && <Message name="__all__" type="error" messages={ formApi.errors }/> }</div>
                     <Input
                       formApi={ formApi }
+                      name="email"
+                      title="Email"
+                      help_text="Your email address."
+                    />
+                    <Input
+                      formApi={ formApi }
                       name="first_name"
                       title="First name"
                       help_text="One word your first name only."
+                      validate={ this.validate_proper_noun}
                     />
                     <Input
                       formApi={ formApi }
                       name="last_name"
                       title="Last name"
                       help_text="One word your last name only."
+                      validate={ this.validate_proper_noun}
                     />
                     <Input
                       formApi={ formApi }
                       name="title"
                       title="Title"
                       help_text="Your job title."
-                    />
-                    <Input
-                      formApi={ formApi }
-                      name="email"
-                      title="Email"
-                      help_text="Your email address."
+                      validate={ this.validate_proper_noun}
                     />
                     <button
                       type="submit"
