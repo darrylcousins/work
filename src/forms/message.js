@@ -31,6 +31,9 @@ export default class Message extends React.Component {
       case "success":
         color = "green"
         break
+      case "warning":
+        color = "orange"
+        break
       default:
         color = "red"
     }

@@ -77,15 +77,20 @@ export default class CreateUser extends React.Component {
     Client.mutate({
       mutation: M,
       })
-      .then((data) => {
-        var result = data.data.createUser
+      .then((outcome) => {
+        var result = outcome.data.createUser
         if (result.formErrors != null) {
           formApi.setFormState("submitting", false)
+          // reset form with submitted data
+          var key
+          for (key in data) {
+            formApi.setValue(key, data[key])
+          }
+          // set errors
           const errors = JSON.parse(result.formErrors)
-          var field
-          for (var key in errors) {
+          for (key in errors) {
             if (errors.hasOwnProperty(key)) {
-              formApi.setError(field, errors[key][0])
+              formApi.setError(key, errors[key][0])
             }
           }
         } else {

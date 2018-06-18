@@ -27,7 +27,7 @@ export default class Login extends React.Component {
   }
 
   username_validate(username) {
-    return !username || username.trim() === '' ? 'Username is a required field' : null
+    return !username || username.trim() === "" ? "Username is a required field" : null
   }
 
   async username_async_validate(username) {
@@ -36,16 +36,24 @@ export default class Login extends React.Component {
         variables: {username: username},
     })
     if (response.data.allUsers.edges.length === 0) {
-      return {error: 'That username does not exist', success: null}
+      return {
+        error: "That username does not exist",
+        warning: "Please try again",
+        success: null
+      }
+    }
+    return {
+      success: "Please continue with your password."
     }
   }
 
   password_validate(password) {
-    return !password || password.trim() === '' ? 'Password is a required field' : null
+    return !password || password.trim() === '' ? "Password is a required field" : null
   }
 
   onSubmit(data, e, formApi) {
     // failed to work out how to use template substitution at this level.
+    console.log(formApi.successes)
     const M = gql`
       mutation {
         createTokenAuth(data: {username: "${ data["username"] }", password: "${ data["password"] }"} ) {

@@ -10,7 +10,7 @@ import InputWrapper from './input_wrapper'
 
 export default (props) => {
 
-  const { formApi, name, title, help_text, validate, asyncValidate } = props
+  const { formApi, name, title, help_text, defaultValue, validate, asyncValidate } = props
 
   let style = Settings.style
   let inputStyle = style.inputDefault
@@ -18,7 +18,7 @@ export default (props) => {
   if (formApi.errors && name in formApi.errors) inputStyle = style.inputError
   if (formApi.asyncErrors && name in formApi.asyncErrors) inputStyle = style.inputError
   if (formApi.warnings && name in formApi.warnings) inputStyle = style.inputWarning
-  if (formApi.success && name in formApi.success) inputStyle = style.inputSuccess
+  if (formApi.successes && name in formApi.successes) inputStyle = style.inputSuccess
 
   return (
     <InputWrapper
@@ -30,6 +30,7 @@ export default (props) => {
       <Text
         field={ name }
         name={ name }
+        defaultValue={ defaultValue }
         id={ name }
         label={ name }
         validate={ validate }

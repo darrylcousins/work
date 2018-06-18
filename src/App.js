@@ -25,6 +25,7 @@ import UserPage from './pages/users'
 import ProfilePage from './pages/profile'
 import SignUpPage from './pages/signup'
 import UpdateProfilePage from './pages/update-profile'
+import PasswordResetPage from './pages/password-reset'
 
 import './tachyons.min.css'
 import './work.css'
@@ -72,6 +73,7 @@ export default () =>
                   <Route exact path="/login" component={ LoginPage } />
                   <Route exact path="/users" component={ UserPage } />
                   <Route exact path="/signup" component={ SignUpPage } />
+                  <Route exact path="/password-reset" component={ PasswordResetPage } />
                   <Switch>
                     <Route path="/users/:username/update-profile" component={ UpdateProfilePage } />
                     <Route path="/users/:username" component={ ProfilePage } />
