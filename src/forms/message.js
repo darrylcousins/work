@@ -29,7 +29,7 @@ export default class Message extends React.Component {
         color = "red"
         break
       case "success":
-        color = "green"
+        color = "dark-green"
         break
       case "warning":
         color = "orange"

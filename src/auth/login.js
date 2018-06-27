@@ -26,29 +26,42 @@ export default class Login extends React.Component {
     this.onSubmit = this.onSubmit.bind(this)
   }
 
-  username_validate(username) {
-    return !username || username.trim() === "" ? "Username is a required field" : null
+  validate(data) {
+    // test for empty fields do it here rather than at field level
+    let required = {
+      username: "Username",
+      password: "Password",
+    }
+    let ret = Object()
+    for (var key in required) {
+      if (required.hasOwnProperty(key) && data.hasOwnProperty(key)) {
+        if (!data[key] || data[key].trim() === '') {
+          ret[key] = Object()
+          ret[key]["error"] = `${ required[key] } is a required field`
+          ret[key]["warning"] = `Please enter a ${ required[key].toLowerCase() }`
+        }
+      }
+    }
+    return ret
   }
 
-  async username_async_validate(username) {
+  async async_validate(data) {
     var response = await Client.query({
         query: getUserByUsername,
-        variables: {username: username},
+        variables: {username: data.username},
     })
     if (response.data.allUsers.edges.length === 0) {
       return {
-        error: "That username does not exist",
-        warning: "Please try again",
-        success: null
+        "username": {
+          error: "That username does not exist, please try again.",
+        }
       }
     }
     return {
-      success: "Please continue with your password."
+      "username": {
+        error: null,
+      }
     }
-  }
-
-  password_validate(password) {
-    return !password || password.trim() === '' ? "Password is a required field" : null
   }
 
   onSubmit(data, e, formApi) {
@@ -125,6 +138,8 @@ export default class Login extends React.Component {
             return (
               <Form
                 onSubmit={ this.onSubmit }
+                validate={ this.validate }
+                asyncValidate={this.async_validate}
               >
                 {formApi => (
                   <form
@@ -137,15 +152,12 @@ export default class Login extends React.Component {
                       name="username"
                       title="Username"
                       help_text="Please enter your username."
-                      validate={ this.username_validate }
-                      asyncValidate={this.username_async_validate}
                     />
                     <PasswordInput
                       formApi={ formApi }
                       name="password"
                       title="Password"
                       help_text="Please enter your password."
-                      validate={ this.password_validate }
                     />
                     <button
                       type="submit"

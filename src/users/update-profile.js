@@ -64,10 +64,13 @@ export default class UpdateProfile extends React.Component {
     } else {
       if (value.match(propernoun) === null) {
         corrected = value.charAt(0).toUpperCase() + value.substr(1).toLowerCase()
+        console.log('NO Match')
       }
     }
     if (corrected !== ''){
-      return `Just one proper noun please, did you mean ${corrected}?`
+      return {
+        error: `Just one proper noun please. Did you mean ${corrected}?`
+      }
     }
   }
 
@@ -83,7 +86,6 @@ export default class UpdateProfile extends React.Component {
     let ret = Object()
     for (var key in required) {
       if (required.hasOwnProperty(key) && data.hasOwnProperty(key)) {
-        console.log(data[key])
         if (!data[key] || data[key].trim() === '') {
           ret[key] = Object()
           ret[key]["error"] = `${ required[key] } is a required field`
@@ -91,7 +93,6 @@ export default class UpdateProfile extends React.Component {
         }
       }
     }
-    console.log(ret)
     return ret
   }
 

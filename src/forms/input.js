@@ -18,7 +18,9 @@ export default (props) => {
   if (formApi.errors && name in formApi.errors) inputStyle = style.inputError
   if (formApi.asyncErrors && name in formApi.asyncErrors) inputStyle = style.inputError
   if (formApi.warnings && name in formApi.warnings) inputStyle = style.inputWarning
+  if (formApi.asyncWarnings && name in formApi.asyncWarnings) inputStyle = style.inputWarning
   if (formApi.successes && name in formApi.successes) inputStyle = style.inputSuccess
+  if (formApi.asyncSuccesses && name in formApi.asyncSuccesses) inputStyle = style.inputSuccess
 
   return (
     <InputWrapper
