@@ -3,17 +3,14 @@
  * @author Darryl Cousins <darryljcousins@gmail.com>
  */
 import React from 'react'
-import { Redirect } from 'react-router-dom'
-import { Query } from 'react-apollo'
 import { Form } from 'react-form'
 import gql from 'graphql-tag'
 
 import Client from '../client'
 import Settings from '../settings'
-import { getUserByEmail, getUserByUsername } from './queries'
+import { getUserByEmail } from './queries'
 import Input from '../forms/input.js'
 import Message from '../forms/message.js'
-import { getLocalUser } from '../auth/queries.js'
 
 export default class UpdateProfile extends React.Component {
 
@@ -24,7 +21,7 @@ export default class UpdateProfile extends React.Component {
   }
 
   validate_email(value) {
-      var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     if (re.test(value)) return null
     return "Email does not validate"
   }
@@ -85,11 +82,12 @@ export default class UpdateProfile extends React.Component {
           formApi.setFormState("submitting", false)
           const errors = JSON.parse(result.formErrors)
           // reset form with submitted data
-          for (var key in data) {
+          var key
+          for (key in data) {
             formApi.setValue(key, data[key])
           }
           // set errors
-          for (var key in errors) {
+          for (key in errors) {
             if (errors.hasOwnProperty(key)) {
               formApi.setError(key, errors[key][0])
             }

@@ -24,7 +24,7 @@ export default class UpdateProfile extends React.Component {
   }
 
   validate_email(value) {
-      var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     if (re.test(value)) return null
     return "Email does not validate"
   }
@@ -130,11 +130,12 @@ export default class UpdateProfile extends React.Component {
           formApi.setFormState("submitting", false)
           const errors = JSON.parse(result.formErrors)
           // reset form with submitted data
-          for (var key in data) {
+          var key
+          for (key in data) {
             formApi.setValue(key, data[key])
           }
           // set errors
-          for (var key in errors) {
+          for (key in errors) {
             if (errors.hasOwnProperty(key)) {
               formApi.setError(key, errors[key][0])
             }
